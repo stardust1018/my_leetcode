@@ -7,11 +7,7 @@ impl Solution {
         }
 
         let mut left_sum = 0;
-        let mut right_sum = 0;
-        for num in &nums {
-            right_sum += num;
-        }
-
+        let mut right_sum = nums.iter().sum();
         let mut cur_idx = 0;
         while cur_idx < nums.len() {
             right_sum -= nums[cur_idx];
