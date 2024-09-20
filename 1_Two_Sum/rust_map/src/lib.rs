@@ -7,17 +7,14 @@ impl Solution {
         let mut idx_vec: Vec<i32> = Vec::new(); // 创建Vec，返回值
 
         let mut num_map: HashMap<i32, i32> = HashMap::new(); // 创建一个HashMap
-        for idx in 0..nums.len() {
-            let val = target - nums[idx];
-            let ret = num_map.get(&val);
-            if ret != None {
-                let ret_val = ret.unwrap();
-                idx_vec.push(*ret_val);
-                idx_vec.push(idx as i32);
+        for (idx_num, &num) in nums.iter().enumerate() {
+            if let Some(&idx) = num_map.get(&(target - num)) {
+                idx_vec.push(idx);
+                idx_vec.push(idx_num as i32);
                 break;
-                
             }
-            num_map.insert(nums[idx], idx as i32); // 当map查询不到时，将当前值和对应idx存入map
+
+            num_map.insert(num, idx_num as i32); // 当map查询不到时，将当前值和对应idx存入map
         }
 
         idx_vec
